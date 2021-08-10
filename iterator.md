@@ -12,10 +12,13 @@
 - Forward Iterator (Read and Write, forward moving)
 - Biderctional Iterator (Read and Write, moves forward or backward)
 - Random Access Iterator (Read and Write, random access)
-[link] (https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
+- [link] (https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
 # iterator_traits
-#### template <class Iterator> class iterator_traits;
-#### template <class T> class iterator_traits<T*>;
-#### template <class T> class iterator_traits<const T*>;
+#### template <
+    class Iterator> class iterator_traits;
+#### template <
+    class T> class iterator_traits<T*>;
+#### template <
+class T> class iterator_traits<const T*>;
 - Traits class defining properties of iterators.
 
