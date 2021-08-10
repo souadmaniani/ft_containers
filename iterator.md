@@ -1,11 +1,11 @@
 # iterator:
-#### template<
+    template<
     class Category,
     class T,
     class Distance = std::ptrdiff_t,
     class Pointer = T*,
     class Reference = T&
-#### > struct iterator;
+     > struct iterator;
 ### Category 
 - Input Iterator (Read only, forward moving)
 - Output Iterator (Write only, forward moving)
@@ -14,11 +14,8 @@
 - Random Access Iterator (Read and Write, random access)
 - [link] (https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
 # iterator_traits
-#### template <
-    class Iterator> class iterator_traits;
-#### template <
-    class T> class iterator_traits<T*>;
-#### template <
-class T> class iterator_traits<const T*>;
+    template <class Iterator> class iterator_traits;
+    template <class T> class iterator_traits<T*>;
+    template <class T> class iterator_traits<const T*>;
 - Traits class defining properties of iterators.
 
