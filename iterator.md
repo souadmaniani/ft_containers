@@ -17,5 +17,5 @@
     template <class T> class iterator_traits<T*>;
     template <class T> class iterator_traits<const T*>;
 - Traits class defining properties of iterators.
-[iterator_traits] (https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
+. [iterator_traits] (https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
 
