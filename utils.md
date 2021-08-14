@@ -6,8 +6,8 @@
 # is_integral
 	template <class T> struct is_integral;
 - Trait class that identifies whether T is an integral type.
-	fundamental integral types : bool,char,char16_t,char32_t,wchar_t,signed char,short int,int,long int,
-	long long int,unsigned char,unsigned short int,unsigned int,unsigned long int, unsigned long long int.
+	fundamental integral types : bool, char, char16_t, char32_t, wchar_t, signed char, short int, int,long int,
+	long long int, unsigned char, unsigned short int, unsigned int, unsigned long int, unsigned long long int.
 # lexicographical_compare 
 - (https://www.cplusplus.com/reference/algorithm/lexicographical_compare/)
 	template <class InputIterator1, class InputIterator2>
