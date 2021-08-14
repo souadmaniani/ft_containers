@@ -8,9 +8,7 @@
 - Trait class that identifies whether T is an integral type.
 	fundamental integral types : bool, char, char16_t, char32_t, wchar_t, signed char, short int, int,long int,
 	long long int, unsigned char, unsigned short int, unsigned int, unsigned long int, unsigned long long int.
-# lexicographical_compare 
-- (https://www.cplusplus.com/reference/algorithm/lexicographical_compare/)
- 
+# lexicographical_compare
 	template <class InputIterator1, class InputIterator2>
 	bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1,
 								InputIterator2 first2, InputIterator2 last2);
@@ -18,11 +16,12 @@
 	bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1,
 								InputIterator2 first2, InputIterator2 last2,
 								Compare comp);
+- (https://www.cplusplus.com/reference/algorithm/lexicographical_compare/)
 # pair
-- (https://www.geeksforgeeks.org/pair-in-cpp-stl/)
 	default (1)	pair();
 	copy (2)	template<class U, class V> pair (const pair<U,V>& pr);
 	initialization (3)	pair (const first_type& a, const second_type& b);
+- (https://www.geeksforgeeks.org/pair-in-cpp-stl/)
 # make_pair
 	template <class T1, class T2>
 	pair<T1,T2> make_pair (T1 x, T2 y);
