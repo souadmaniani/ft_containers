@@ -18,8 +18,8 @@
 								Compare comp);
 - (https://www.cplusplus.com/reference/algorithm/lexicographical_compare/)
 # pair
-	default (1)	pair();
-	copy (2)	template<class U, class V> pair (const pair<U,V>& pr);
+	default (1)		pair();
+	copy (2)		template<class U, class V> pair (const pair<U,V>& pr);
 	initialization (3)	pair (const first_type& a, const second_type& b);
 - (https://www.geeksforgeeks.org/pair-in-cpp-stl/)
 # make_pair
