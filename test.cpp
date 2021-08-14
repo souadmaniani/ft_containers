@@ -1,19 +1,29 @@
-// enable_if example: two ways of using enable_if
+
+// CPP program to illustrate
+// auto-initializing of pair STL
 #include <iostream>
-#include <type_traits>
-
-// 1. the return type (bool) is only valid if T is an integral type:
-template <class T>
-typename std::enable_if< std::is_integral<T>::value, bool >::type  is_odd (T i) {
-	return bool(i%2);
-	}
-
-int main() {
-
-  int * i ;    // code does not compile if type of i is not integral
-
-//   std::cout << std::boolalpha;
-  std::cout << "i is odd: " << is_odd(i) << std::endl;
-
-  return 0;
+#include <utility>
+ 
+using namespace std;
+ 
+int main()
+{
+    pair<int, double> PAIR1;
+    pair<string, char> PAIR2;
+ 
+    // it is initialised to 0
+    cout << PAIR1.first;
+   
+    // it is initialised to 0
+    cout << PAIR1.second;
+ 
+    cout << " ";
+ 
+    // // it prints nothing i.e NULL
+    cout << PAIR2.first;
+     
+    // it prints nothing i.e NULL
+    cout << PAIR2.second;
+ 
+    return 0;
 }
