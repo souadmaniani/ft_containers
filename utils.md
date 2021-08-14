@@ -10,6 +10,7 @@
 	long long int, unsigned char, unsigned short int, unsigned int, unsigned long int, unsigned long long int.
 # lexicographical_compare 
 - (https://www.cplusplus.com/reference/algorithm/lexicographical_compare/)
+- 
 	template <class InputIterator1, class InputIterator2>
 	bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1,
 								InputIterator2 first2, InputIterator2 last2);
