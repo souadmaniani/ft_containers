@@ -26,3 +26,8 @@
 	template <class T1, class T2>
 	pair<T1,T2> make_pair (T1 x, T2 y);
 - Construct pair object
+# C++ keywords: typename
+### Usage
+- In the template parameter list of a template declaration, typename can be used as an alternative to class to declare type template parameters.
+- Inside a declaration or a definition of a template, typename can be used to declare that a dependent qualified name is a type.
+- Example: a swap function that accepts a container (templated), and two indices to swap, u could use the value_type definition to define a temp variable.
