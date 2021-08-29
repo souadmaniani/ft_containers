@@ -1,26 +1,17 @@
-
-// CPP program to illustrate
-// auto-initializing of pair STL
+// vector::cbegin/cend
 #include <iostream>
-#include <utility>
 #include <vector>
-using namespace std;
 
-template<typename T>
-void swap(T &container, int i, int j)
+int main ()
 {
-	typename T::value_type temp = container[i];
-	container[i] = container[j];
-	container[i] = temp;
-}
+  std::vector<int> myvector;
+  for (int i=1; i<=5; i++) myvector.push_back(i);
 
-int main()
-{
-    std::vector<int> t;
-	t.push_back(4);
-	t.push_back(9);
-	swap(t, 0, 1);
-	std::cout << t[0] << t[0];
-	
-    return 0;
+  std::cout << "myvector contains:";
+
+  for (std::vector<int>::iterator it = myvector.cbegin(); it != myvector.cend(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << '\n';
+
+  return 0;
 }
