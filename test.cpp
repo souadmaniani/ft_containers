@@ -1,17 +1,12 @@
-// vector::cbegin/cend
 #include <iostream>
-#include <vector>
+// #include <vector>
+#include "includes/vector.hpp"
 
 int main ()
 {
-  std::vector<int> myvector;
-  for (int i=1; i<=5; i++) myvector.push_back(i);
-
-  std::cout << "myvector contains:";
-
-  for (std::vector<int>::iterator it = myvector.cbegin(); it != myvector.cend(); ++it)
-    std::cout << ' ' << *it;
-  std::cout << '\n';
-
+	ft::vector v(3, 7);
+	v.push_back (13);
+	v.push_back (37);
+	cout << v;
   return 0;
 }
