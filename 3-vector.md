@@ -29,6 +29,7 @@
 #### (destructor)
 	~vector();
 #### operator=
+	vector& operator= (const vector& x);
 ### Iterators:
 #### begin
 	iterator begin();
