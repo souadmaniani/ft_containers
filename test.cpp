@@ -1,19 +1,17 @@
-#include <iostream>
 #include <vector>
-#include "includes/vector.hpp"
+#include <iostream>
+using namespace std;
 
-int main ()
-{
-	ft::vector v(3, 1);
-	v.push_back (13);
+int main(int argc, const char** argv) {
+	vector<int> v(3, 7);
+	vector<int> v2(3, 7);
 	v.push_back (37);
-	ft::vector v2(4);
-	if (v == v2)
-		std::cout << "v equal v2" << std::endl;
-	else
-		std::cout << "not equal" << std::endl;
-	cout << v;
-	v = v2;
-	cout << v;
-  return 0;
+	v.push_back (42);
+	// cout << "back: " << v.back() << '\n';
+	// v.pop_back();
+	// cout << "back: " << v.back() << '\n';
+	// v.erase(v.begin());
+	v.clear();
+	std::cout << v.size() << v.capacity() << v.empty() << std::endl;
+	return 0;
 }

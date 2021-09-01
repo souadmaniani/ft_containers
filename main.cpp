@@ -1,18 +1,21 @@
 #include <iostream>
 #include "includes/vector.hpp"
-using namespace std;
-int main() 
-{ 
-	// ft::vector<int> vect;
-	// vect.push_back(10);
-	// vect.push_back(7);
-    // ft::vector<int>::iterator ptr;
-    // cout << "The vector elements are : ";
-	// for (ptr = vect.begin(); ptr < vect.end(); ptr++)
-	// 	cout << *ptr << " ";
-	// cout << '\n';
 
-	/************* RESULT *************/
-	// The vector elements are : 10 7
-	return 0;
+int main ()
+{
+	ft::vector v;
+	ft::vector v2(3, 7);
+	v.push_back (37);
+	v.push_back (42);
+	cout << v;
+	// cout << "front: " << v.front() << '\n';
+	// cout << "back: " << v.back() << '\n';
+	// v.pop_back();
+	// cout << "back: " << v.back() << '\n';
+	// if (v != v2)
+	// 	std::cout << "******true***" << std::endl;
+	// v.erase(0);
+	v.clear();
+	cout << v;
+  return 0;
 }

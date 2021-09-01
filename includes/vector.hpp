@@ -21,16 +21,28 @@ namespace ft {
 				_array[i] = val;
 		}
 		vector (const vector& x) {
-			*this = x;
-		}
-		vector& operator= (const vector& x) {
+			int i;
+
+			i = -1;
 			_capacity = x._capacity;
 			_size = x._size;
-			delete [] _array;
 			_array = new int[_capacity];
-			int i = -1;
 			while (++i < _size)
 				_array[i] = x._array[i];
+		}
+		vector& operator= (const vector& x) {
+			int i;
+
+			i = -1;
+			if (_size < x._size)
+			{
+				_capacity = x._capacity;
+				delete [] _array;
+				_array = new int[_capacity];
+			}
+			while (++i < x._size)
+				_array[i] = x._array[i];
+			_size = x._size;
 			return (*this);
 		}
 		~vector() {
@@ -38,8 +50,26 @@ namespace ft {
 			std::cout << "vector deleted" << std::endl;
 		}
 		void push_back (const int val) {
-			_array[_size] = val;
+			int * arr;
+			int i;
+
+			i = -1;
+			if (_capacity <= _size)
+			{
+				_capacity = _size + 5;
+				arr = new int[_capacity];
+				while (++i < _size)
+					arr[i] = _array[i];
+				arr[i] = val;
+				delete [] _array;
+				_array = arr;
+			}
+			else
+				_array[_size] = val;
 			_size++;
+		}
+		void pop_back() {
+			_size--;
 		}
 		int size() const {
 			return _size;
@@ -50,10 +80,37 @@ namespace ft {
 		bool empty() const {
 			return _size == 0;
 		}
-		// reference operator[] (int n) {
-
-		// }
+		int& operator[] (int n) {
+				return _array[n];
+		}
+		int& at (int n) {
+			if (n >=_size || n < 0)
+				throw out_of_range("Index out of range");
+			return _array[n];
+		}
+		int& front () {
+			return (_array[0]);
+		}
+		int& back () {
+			return (_array[_size - 1]);
+		}
+		void insert (int n, const int& val);
+		void erase (int position) {
+			int i;
+			if (position < _size  && position >= 0)
+			{
+				i = position - 1;
+				while (++i < _size)
+					_array[i] = _array[i + 1];
+			}
+			_size--;
+		}
+		void clear() {
+			// update
+			_size = 0;
+		}
 		friend bool operator== (const vector& lhs, const vector& rhs);
+		friend bool operator!= (const vector& lhs, const vector& rhs);
 		friend ostream & operator<<(ostream & o, vector const & rhs);
 	};
 
@@ -68,14 +125,16 @@ namespace ft {
 	    }
 	    return true;
 	}
-
+	bool operator!= (const vector& lhs, const vector& rhs) {
+		return (!(lhs == rhs));
+	}
 	ostream & operator<<(ostream & o, vector const & rhs) {
 		int i = -1;
 
 		std::cout << "\e[1;35m/*******Vector Details: *******/\e[1;37m" << std::endl;
 		cout << "size: " << rhs._size << '\n';
 		cout << "capacity: " << rhs._capacity << '\n';
-		cout << "is_empty: " << boolalpha <<rhs.empty() << '\n';
+		cout << "is_empty: " << boolalpha << rhs.empty() << '\n';
 		while (++i < rhs._size)
 			o << rhs._array[i] << " ";
 		while (i < rhs._capacity)
