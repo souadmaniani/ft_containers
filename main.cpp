@@ -1,22 +1,12 @@
 #include <iostream>
-#include "includes/vector.hpp"
+// #include "includes/vector.hpp"
+#include "includes/iterator.hpp"
 
 int main ()
 {
-	// ft::vector v;
-	// ft::vector v2(3, 7);
-	// v.push_back (37);
-	// v.push_back (42);
-	// cout << v;
-	// // cout << "front: " << v.front() << '\n';
-	// // cout << "back: " << v.back() << '\n';
-	// // v.pop_back();
-	// // cout << "back: " << v.back() << '\n';
-	// // if (v != v2)
-	// // 	std::cout << "******true***" << std::endl;
-	// // v.erase(0);
-	// cout << v;
-	// v.insert(0, 3);
-	// cout << v;
-  return 0;
+	ft::iterator<int> it1;
+	ft::iterator<int> it2;
+	if (it1 == it2)
+		cout << "equality\n";
+  	return 0;
 }
