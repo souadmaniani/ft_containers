@@ -1,12 +1,15 @@
 #include <iostream>
-// #include "includes/vector.hpp"
+#include "includes/vector.hpp"
 #include "includes/iterator.hpp"
 
 int main ()
 {
-	ft::iterator<int> it1;
-	ft::iterator<int> it2;
-	if (it1 == it2)
-		cout << "equality\n";
+	ft::vector<int> v(5, 7);
+	ft::vector<int> v2(v);
+	ft::vector<int>::iterator it;
+	// it = v.begin();
+	it = v.begin() + 1;
+	// cout << *it << "\n";
+	cout <<  v;
   	return 0;
 }

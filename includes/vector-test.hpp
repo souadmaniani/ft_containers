@@ -12,15 +12,15 @@ namespace ft {
 		int _capacity;
 		int _size;
 	public:
-		vector() : _size(0), _capacity(7) {
-			_array = new int[_capacity];
-		}
-		vector (int n, const int val = 0): _size(n), _capacity(100) {
-			int i = -1;
-			_array = new int[_capacity];
-			while (++i < n)
-				_array[i] = val;
-		}
+		// vector() : _size(0), _capacity(7) {
+		// 	_array = new int[_capacity];
+		// }
+		// vector (int n, const int val = 0): _size(n), _capacity(100) {
+		// 	int i = -1;
+		// 	_array = new int[_capacity];
+		// 	while (++i < n)
+		// 		_array[i] = val;
+		// }
 		vector (const vector& x) {
 			int i;
 
@@ -72,15 +72,15 @@ namespace ft {
 		void pop_back() {
 			_size--;
 		}
-		int size() const {
-			return _size;
-		}
-		int capacity() const {
-			return _capacity;
-		}
-		bool empty() const {
-			return _size == 0;
-		}
+		// int size() const {
+		// 	return _size;
+		// }
+		// int capacity() const {
+		// 	return _capacity;
+		// }
+		// bool empty() const {
+		// 	return _size == 0;
+		// }
 		int& operator[] (int n) {
 				return _array[n];
 		}
