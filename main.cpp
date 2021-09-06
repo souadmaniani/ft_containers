@@ -5,11 +5,13 @@
 int main ()
 {
 	ft::vector<int> v(5, 7);
-	ft::vector<int> v2(v);
 	ft::vector<int>::iterator it;
-	// it = v.begin();
-	it = v.begin() + 1;
-	// cout << *it << "\n";
+	ft::vector<int>::iterator it2;
+	it2 = v.begin();
+	it = v.end();
+	it -= 1;
+	
+	cout << *it << "\n";
 	cout <<  v;
   	return 0;
 }

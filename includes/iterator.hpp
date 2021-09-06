@@ -45,16 +45,16 @@ namespace ft
             --ptr;
             return (*this);
         }
-        // void operator+(difference_type n) {
-        //     iterator t(*this);
-        //     t.ptr += n;
-        //     return (t);
-        // }
-        // iterator& operator-(difference_type n) {
-        //     iterator t (*this);
-        //     t.ptr = t.ptr - n;
-        //     return (t);
-        // }
+        iterator operator+(difference_type n) {
+            iterator t(*this);
+            t.ptr += n;
+            return (t);
+        }
+        iterator operator-(difference_type n) {
+            iterator t (*this);
+            t.ptr -= n;
+            return (t);
+        }
         iterator& operator+=(difference_type n) {
             ptr = ptr + n;
             return (*this);
@@ -62,6 +62,9 @@ namespace ft
         iterator& operator-=(difference_type n) {
             ptr = ptr - n;
             return (*this);
+        }
+        difference_type operator-(iterator & j) {
+            return (*this - j);
         }
         bool operator<(const iterator& rhs) {
             return (ptr < rhs.ptr);
