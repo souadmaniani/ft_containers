@@ -81,7 +81,17 @@ namespace ft
         value_type operator[] (difference_type n) {
             return (ptr[n]);
         }
+        friend ostream & operator<<(ostream & o, iterator const & rhs);
     };
+    	ostream & operator<<(ostream & o, iterator<int> const & rhs) {
+            unsigned long i = 0;
+
+            cout << "\e[1;35m/*******Iterato Details: *******/\e[1;37m" << endl;
+           
+            o << rhs.ptr << "\n";
+            cout << "\e[1;35m/******* End Details *******/\e[1;37m" << endl;
+            return o;
+            }
 }
 
 #endif
