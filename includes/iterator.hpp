@@ -4,31 +4,64 @@ using namespace std;
 
 namespace ft
 {
-    template< class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
-    class iterator
+    template<class V>
+    class ConstIterator
+    {
+        public:
+        typedef V value_type;
+	    typedef const V* const_pointer;
+        typedef  const V& const_reference;
+        // typedef Distance difference_type;
+        private:
+            const_pointer ptr;
+        public:
+            ConstIterator() : ptr(0) {}
+            ConstIterator( const_pointer p) : ptr(p) {
+                std::cout << "ConstIterator: constructor" << std::endl;
+            }
+            ~ConstIterator() { }
+            ConstIterator(const ConstIterator &x) {
+                std::cout << "ConstIterator: copy" << std::endl;
+                *this = x;
+            }
+            ConstIterator& operator=(const ConstIterator &x) {
+                std::cout << "ConstIterator: assignation" << std::endl;
+                ptr = x.ptr;
+                return (*this);
+            }
+            const_reference operator*() {
+                return (*ptr);
+            }
+    };
+
+    template< class T>
+    class Iterator : public ConstIterator<T>
     {
     public:
         typedef T value_type;
-        typedef Pointer pointer;
-        typedef  Reference reference;
-        typedef Distance difference_type;
+        typedef T* pointer;
+        typedef  T& reference;
     private:
         pointer ptr;
     public:
-        iterator() : ptr(0) {}
-        iterator(pointer p) : ptr(p) {}
-        ~iterator() { }
-        iterator(const iterator &x) {
+        Iterator() : ptr(0) {}
+        Iterator(pointer p) : ptr(p) {
+            std::cout << "Iterator: constructor" << std::endl;
+        }
+        ~Iterator() { }
+        Iterator(const Iterator &x) {
+            std::cout << "Iterator: copy" << std::endl;
             *this = x;
         }
-        iterator& operator=(const iterator &x) {
+        Iterator& operator=(const Iterator &x) {
+            std::cout << "Iterator: assignation" << std::endl;
             ptr = x.ptr;
             return (*this);
         }
-		bool operator== (const iterator<T>& rhs) {
+		bool operator== (const Iterator<T>& rhs) {
 			return (ptr == rhs.ptr);
 		}
-		bool operator!= (const iterator<T>& rhs) {
+		bool operator!= (const Iterator<T>& rhs) {
 			return (!(*this == rhs));
 		}
         reference operator*() {
@@ -37,61 +70,52 @@ namespace ft
         pointer operator->(){
             return (ptr);
         }
-        iterator& operator++() {
+        Iterator& operator++() {
             ++ptr;
             return (*this);
         }
-        iterator& operator--() {
+        Iterator& operator--() {
             --ptr;
             return (*this);
         }
-        iterator operator+(difference_type n) {
-            iterator t(*this);
-            t.ptr += n;
-            return (t);
-        }
-        iterator operator-(difference_type n) {
-            iterator t (*this);
-            t.ptr -= n;
-            return (t);
-        }
-        iterator& operator+=(difference_type n) {
-            ptr = ptr + n;
-            return (*this);
-        }
-        iterator& operator-=(difference_type n) {
-            ptr = ptr - n;
-            return (*this);
-        }
-        difference_type operator-(iterator & j) {
-            return (*this - j);
-        }
-        bool operator<(const iterator& rhs) {
-            return (ptr < rhs.ptr);
-        }
-        bool operator>(const iterator& rhs) {
-            return (ptr > rhs.ptr);
-        }
-        bool operator<=(const iterator& rhs) {
-            return (ptr <= rhs.ptr);
-        }
-        bool operator>=(const iterator& rhs) {
-            return (ptr >= rhs.ptr);
-        }
-        value_type operator[] (difference_type n) {
-            return (ptr[n]);
-        }
-        friend ostream & operator<<(ostream & o, iterator const & rhs);
+        // Iterator operator+(difference_type n) {
+        //     Iterator t(*this);
+        //     t.ptr += n;
+        //     return (t);
+        // }
+        // Iterator operator-(difference_type n) {
+        //     Iterator t (*this);
+        //     t.ptr -= n;
+        //     return (t);
+        // }
+        // Iterator& operator+=(difference_type n) {
+        //     ptr = ptr + n;
+        //     return (*this);
+        // }
+        // Iterator& operator-=(difference_type n) {
+        //     ptr = ptr - n;
+        //     return (*this);
+        // }
+        // difference_type operator-(Iterator & j) {
+        //     return (*this - j);
+        // }
+        // bool operator<(const Iterator& rhs) {
+        //     return (ptr < rhs.ptr);
+        // }
+        // bool operator>(const Iterator& rhs) {
+        //     return (ptr > rhs.ptr);
+        // }
+        // bool operator<=(const Iterator& rhs) {
+        //     return (ptr <= rhs.ptr);
+        // }
+        // bool operator>=(const Iterator& rhs) {
+        //     return (ptr >= rhs.ptr);
+        // }
+        // value_type operator[] (difference_type n) {
+        //     return (ptr[n]);
+        // }
+        // friend ostream & operator<<(ostream & o, Iterator const & rhs);
     };
-    	ostream & operator<<(ostream & o, iterator<int> const & rhs) {
-            unsigned long i = 0;
-
-            cout << "\e[1;35m/*******Iterato Details: *******/\e[1;37m" << endl;
-           
-            o << rhs.ptr << "\n";
-            cout << "\e[1;35m/******* End Details *******/\e[1;37m" << endl;
-            return o;
-            }
 }
 
 #endif

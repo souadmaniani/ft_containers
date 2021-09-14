@@ -16,7 +16,8 @@ namespace ft
 	    typedef T* pointer;
 	    typedef const T* const_pointer;
 		typedef unsigned long size_type;
-		typedef ft::iterator<T> iterator;
+		typedef ft::Iterator<T> iterator;
+		typedef ft::ConstIterator<T> const_iterator;
 	private:
 		size_type	_size;
 		size_type	_capacity;
@@ -26,6 +27,7 @@ namespace ft
 	/******************** Member functions *********************/	
 	// without explicit keyword
 	vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0){
+        std::cout << "here is the constructor for the vector" << std::endl;
 		_allocator = alloc;
 		_array = _allocator.allocate(_capacity);
 	}
@@ -40,13 +42,13 @@ namespace ft
 				i++;
 			}
 	}
-	// a revenir
 	// template <class InputIterator>
 	// vector (InputIterator first, InputIterator last,
 	//              const allocator_type& alloc = allocator_type()) {
 
 	// }
 	vector (const vector& x) {
+       	std::cout << "here is the copy" << std::endl;
 		*this = x;
 	}
 	~vector() {
@@ -54,6 +56,7 @@ namespace ft
 		cout << "free memory\n";
 	}
 	vector& operator= (const vector& x) {
+        std::cout << "here is the assignation" << std::endl;
 		unsigned long i;
 
 		i = 0;
@@ -76,11 +79,15 @@ namespace ft
 	iterator begin() {
 		return (iterator(_array));
 	}
-	// const_iterator begin() const;
+	const_iterator begin() const {
+		return (const_iterator(_array));
+	}
 	iterator end() {
 		return (iterator(_array + _size));
 	}
-	// const_iterator end() const;
+	const_iterator end() const {
+		return (const_iterator(_array + _size));
+	}
 	// reverse_iterator rbegin();
 	// const_reverse_iterator rbegin() const;
 	// reverse_iterator rend();
