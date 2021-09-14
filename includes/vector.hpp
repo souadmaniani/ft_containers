@@ -33,6 +33,7 @@ namespace ft
 	}
 	vector (size_type n, const value_type& val = value_type(),
 	             const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
+			std::cout << "vector normal " << std::endl;
 			unsigned long i = 0;
 			_allocator = alloc;
 			_array = _allocator.allocate(_capacity);
@@ -45,7 +46,7 @@ namespace ft
 	// template <class InputIterator>
 	// vector (InputIterator first, InputIterator last,
 	//              const allocator_type& alloc = allocator_type()) {
-
+	// 				 std::cout << "Input Iterator" << std::endl;
 	// }
 	vector (const vector& x) {
        	std::cout << "here is the copy" << std::endl;
@@ -88,7 +89,9 @@ namespace ft
 	const_iterator end() const {
 		return (const_iterator(_array + _size));
 	}
-	// reverse_iterator rbegin();
+	reverse_iterator rbegin() {
+		return (reverse_iterator(_array));
+	}
 	// const_reverse_iterator rbegin() const;
 	// reverse_iterator rend();
 	// const_reverse_iterator rend() const;
