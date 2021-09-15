@@ -29,3 +29,5 @@
 - https://stackoverflow.com/questions/2844339/c-iterator-and-const-iterator-problem-for-own-container-class
 - https://www.drdobbs.com/the-standard-librarian-defining-iterato/184401331
 - https://en.cppreference.com/w/cpp/language/cast_operator
+- https://stackoverflow.com/questions/1143262/what-is-the-difference-between-const-int-const-int-const-and-int-const
+- https://en.cppreference.com/w/cpp/language/implicit_conversion

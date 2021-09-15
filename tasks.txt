@@ -1,4 +1,4 @@
-- explicit ??
-- vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
-- difference_type
+today: 
+- implement iterator + const_iterator + few methodes in vector
+- implement iterator_trait + reverse_iterator
 - https://en.cppreference.com/w/cpp/iterator/reverse_iterator

@@ -5,5 +5,6 @@
 int main ()
 {
 	ft::vector<int> d(5, 6);
-	// ft::vector<int> f(d.begin(), d.end());
+   	ft::vector<int>::const_iterator i = d.begin();
+	i++;
 }

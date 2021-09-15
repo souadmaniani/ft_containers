@@ -25,7 +25,7 @@
          vector (InputIterator first, InputIterator last,
                  const allocator_type& alloc = allocator_type());
 	(copy) vector (const vector& x);
-	
+- the purpose of the explicit keyword: To tell the compiler that a certain constructor may not be used to implicitly cast an expression to its class type.
 #### (destructor)
 	~vector();
 #### operator=
@@ -123,3 +123,4 @@
 #### swap
 	template <class T, class Alloc>
 	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y);
+- (https://docs.microsoft.com/fr-fr/cpp/standard-library/vector-class?view=msvc-160&viewFallbackFrom=vs-2019)

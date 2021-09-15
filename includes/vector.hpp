@@ -17,7 +17,7 @@ namespace ft
 	    typedef const T* const_pointer;
 		typedef unsigned long size_type;
 		typedef ft::Iterator<T> iterator;
-		typedef ft::ConstIterator<T> const_iterator;
+		typedef ft::Iterator<const T> const_iterator;
 	private:
 		size_type	_size;
 		size_type	_capacity;
@@ -89,28 +89,28 @@ namespace ft
 	const_iterator end() const {
 		return (const_iterator(_array + _size));
 	}
-	reverse_iterator rbegin() {
-		return (reverse_iterator(_array));
-	}
+	// reverse_iterator rbegin() {
+	// 	return (reverse_iterator(_array));
+	// }
 	// const_reverse_iterator rbegin() const;
 	// reverse_iterator rend();
 	// const_reverse_iterator rend() const;
 
 	/******************** Capacity *********************/	
-	size_type size() const {
-		return (_size);
-	}
-	size_type max_size() const {
-		return (4611686018427387903);
-	}
-	void resize (size_type n, value_type val = value_type());
-	size_type capacity() const {
-		return (_capacity);
-	}
-	bool empty() const {
-		return (_size == 0);
-	}
-	void reserve (size_type n);
+	// size_type size() const {
+	// 	return (_size);
+	// }
+	// size_type max_size() const {
+	// 	return (4611686018427387903);
+	// }
+	// void resize (size_type n, value_type val = value_type());
+	// size_type capacity() const {
+	// 	return (_capacity);
+	// }
+	// bool empty() const {
+	// 	return (_size == 0);
+	// }
+	// void reserve (size_type n);
 	
 	/******************** Element access *********************/	
 	// reference operator[] (size_type n);
@@ -147,7 +147,7 @@ namespace ft
 	// friend bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 	// friend bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 	// friend void swap (vector<T,Alloc>& x, vector<T,Alloc>& y);
-	friend ostream & operator<<(ostream & o, vector const & rhs);
+	// friend ostream & operator<<(ostream & o, vector const & rhs);
 	};
 	// template <class T, class Alloc>
 	// bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
@@ -163,21 +163,21 @@ namespace ft
 	// bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 	// template <class T, class Alloc>
 	// void swap (vector<T,Alloc>& x, vector<T,Alloc>& y);
-	ostream & operator<<(ostream & o, vector<int> const & rhs) {
-	unsigned long i = 0;
+	// ostream & operator<<(ostream & o, vector<int> const & rhs) {
+	// unsigned long i = 0;
 
-	cout << "\e[1;35m/*******Vector Details: *******/\e[1;37m" << endl;
-	cout << "size: " << rhs._size << '\n';
-	cout << "capacity: " << rhs._capacity << '\n';
-	cout << "is_empty: " << boolalpha << rhs.empty() << '\n';
-	while (i < rhs._size)
-	{
-		o << rhs._array[i] << " ";
-		i++;
-	}
-	cout << '\n';
-	cout << "\e[1;35m/******* End Details *******/\e[1;37m" << endl;
-	return o;
-	}
+	// cout << "\e[1;35m/*******Vector Details: *******/\e[1;37m" << endl;
+	// cout << "size: " << rhs._size << '\n';
+	// cout << "capacity: " << rhs._capacity << '\n';
+	// cout << "is_empty: " << boolalpha << rhs.empty() << '\n';
+	// while (i < rhs._size)
+	// {
+	// 	o << rhs._array[i] << " ";
+	// 	i++;
+	// }
+	// cout << '\n';
+	// cout << "\e[1;35m/******* End Details *******/\e[1;37m" << endl;
+	// return o;
+	// }
 }
 #endif
