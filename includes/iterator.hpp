@@ -16,7 +16,8 @@ namespace ft
         // is used in context that does not accept that type, but accepts some other type T2; in particular:
 		// when the expression is used as an operand with an operator that expects T2
         operator Iterator<const T>() const {
-				return (Iterator<const T>(ptr)); 
+            std::cout << "/* ****** operator ******* */" << std::endl;
+			return (Iterator<const T>(ptr)); 
 		}
     private:
         pointer ptr;
@@ -101,8 +102,27 @@ namespace ft
         value_type operator[] (difference_type n) {
             return (ptr[n]);
         }
-        friend ostream & operator<<(ostream & o, Iterator const & rhs);
+    };
+    
+    template <class Iter>
+    class ReverseIterator : public Iter
+    {
+    public:
+        ReverseIterator()  {}
+        explicit ReverseIterator (iterator_type it) {
+            
+        }
+        ReverseIterator (const ReverseIterator<Iter>& rev_it) {
+
+        }
+    
+    private:
+        
     };
 }
 
 #endif
+
+
+
+vector<int> v  =new vector(9);

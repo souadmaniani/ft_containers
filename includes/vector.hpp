@@ -37,11 +37,12 @@ namespace ft
 			unsigned long i = 0;
 			_allocator = alloc;
 			_array = _allocator.allocate(_capacity);
-			while (i < _size)
-			{
-				_array[i] = val;
-				i++;
-			}
+			_allocator.construct(_array, _size);
+			// while (i < _size)
+			// {
+			// 	_array[i] = val;
+			// 	i++;
+			// }
 	}
 	// template <class InputIterator>
 	// vector (InputIterator first, InputIterator last,
@@ -80,6 +81,7 @@ namespace ft
 	iterator begin() {
 		return (iterator(_array));
 	}
+	// no viable conversion from 'Iterator<int>' to 'Iterator<const int>'
 	const_iterator begin() const {
 		return (const_iterator(_array));
 	}
@@ -89,12 +91,18 @@ namespace ft
 	const_iterator end() const {
 		return (const_iterator(_array + _size));
 	}
-	// reverse_iterator rbegin() {
-	// 	return (reverse_iterator(_array));
+	reverse_iterator rbegin() {
+		return (reverse_iterator(_array));
+	}
+	// const_reverse_iterator rbegin() const {
+	// 	return (const_reverse_iterator(_array));
 	// }
-	// const_reverse_iterator rbegin() const;
-	// reverse_iterator rend();
-	// const_reverse_iterator rend() const;
+	reverse_iterator rend() {
+		return (reverse_iterator(_array + size));
+	}
+	// const_reverse_iterator rend() const {
+	// 	return (const_reverse_iterator(_))
+	// }
 
 	/******************** Capacity *********************/	
 	// size_type size() const {
