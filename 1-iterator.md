@@ -22,6 +22,9 @@
 - [iterator_traits] (https://www.codeproject.com/Articles/36530/An-Introduction-to-Iterator-Traits)
 # reverse_iterator
     template< class Iter > class reverse_iterator;
+### reverse_iterator::base
+    iterator_type base() const;
+- The base iterator is an iterator of the same type as the one used to construct the reverse_iterator, but pointing to the element next to the one the reverse_iterator is currently pointing to (a reverse_iterator has always an offset of -1 with respect to its base iterator).
 #### Usefull links
 - [Random Access Iterator] (https://www.boost.org/sgi/stl/RandomAccessIterator.html)
 - https://www.geeksforgeeks.org/const-vs-regular-iterators-in-c-with-examples/

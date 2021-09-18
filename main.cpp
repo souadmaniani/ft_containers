@@ -1,9 +1,12 @@
 #include <iostream>
 #include "includes/vector.hpp"
-#include "includes/iterator.hpp"
+#include "includes/VectorIterator.hpp"
 
 int main ()
 {
-	ft::vector<int> d(5, 6);
-   	ft::vector<int>::const_iterator i = d.begin();
+	ft::vector<int> v(1,1);
+	ft::vector<int>::reverse_iterator it = v.rbegin();
+	// std::cout << *it << std::endl;
+	// it++;
+	// std::cout << *it << std::endl;
 }

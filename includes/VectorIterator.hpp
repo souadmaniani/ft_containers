@@ -1,5 +1,5 @@
-#ifndef ITERATOR_HPP
-#define ITERATOR_HPP
+#ifndef VECTORITERATOR_HPP
+#define VECTORITERATOR_HPP
 using namespace std;
 
 namespace ft
@@ -19,7 +19,7 @@ namespace ft
             std::cout << "/* ****** operator ******* */" << std::endl;
 			return (Iterator<const T>(ptr)); 
 		}
-    private:
+    protected:
         pointer ptr;
     public:
         Iterator() : ptr(0) {}
@@ -104,25 +104,7 @@ namespace ft
         }
     };
     
-    template <class Iter>
-    class ReverseIterator : public Iter
-    {
-    public:
-        ReverseIterator()  {}
-        explicit ReverseIterator (iterator_type it) {
-            
-        }
-        ReverseIterator (const ReverseIterator<Iter>& rev_it) {
-
-        }
-    
-    private:
-        
-    };
+ 
 }
 
 #endif
-
-
-
-vector<int> v  =new vector(9);
