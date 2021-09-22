@@ -28,11 +28,11 @@ namespace ft
         }
         ~Iterator() { }
         Iterator(const Iterator &x) {
-            std::cout << "Iterator: copy" << std::endl;
+            // std::cout << "Iterator: copy" << std::endl;
             *this = x;
         }
         Iterator& operator=(const Iterator &x) {
-            std::cout << "Iterator: assignation" << std::endl;
+            // std::cout << "Iterator: assignation" << std::endl;
             ptr = x.ptr;
             return (*this);
         }
@@ -42,10 +42,10 @@ namespace ft
 		bool operator!= (const Iterator<T>& rhs) {
 			return (!(*this == rhs));
 		}
-        reference operator*() {
+        reference operator*() const {
             return (*ptr);
         }
-        pointer operator->(){
+        pointer operator->()  const{
             return (ptr);
         }
         Iterator& operator++() {

@@ -20,7 +20,7 @@ namespace ft
 		typedef ft::Iterator<T> iterator;
 		typedef ft::Iterator<const T> const_iterator;
 		typedef ft::ReverseIterator<iterator> reverse_iterator;
-		// typedef ft::ReverseIterator<const T> const_reverse_iterator;
+		// typedef ft::ReverseIterator<const_iterator> const_reverse_iterator;
 
 	private:
 		size_type	_size;
@@ -41,12 +41,7 @@ namespace ft
 			unsigned long i = 0;
 			_allocator = alloc;
 			_array = _allocator.allocate(_capacity);
-			_allocator.construct(_array, _size);
-			// while (i < _size)
-			// {
-			// 	_array[i] = val;
-			// 	i++;
-			// }
+			_allocator.construct(_array, val);
 	}
 	// template <class InputIterator>
 	// vector (InputIterator first, InputIterator last,
@@ -96,16 +91,16 @@ namespace ft
 	}
 	/***** Reverse Iterator***/
 	reverse_iterator rbegin() {
-		return (end());
+		return (reverse_iterator(_array + _size - 1));
 	}
 	// const_reverse_iterator rbegin() const {
-	// 	return (const_iterator(_array + _size));
+	// 	return (const_reverse_iterator(_array + _size - 1));
 	// }
 	reverse_iterator rend() {
-		return (reverse_iterator(begin()));
+		return (reverse_iterator(_array - 1));
 	}
 	// const_reverse_iterator rend() const {
-	// 	return (const_iterator(_array))
+	// 	return (const_reverse_iterator(_array - 1));
 	// }
 
 	/******************** Capacity *********************/	

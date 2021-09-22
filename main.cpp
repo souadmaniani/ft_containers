@@ -4,9 +4,10 @@
 
 int main ()
 {
-	ft::vector<int> v(1,1);
+	ft::vector<int> v(2,1337);
 	ft::vector<int>::reverse_iterator it = v.rbegin();
-	// std::cout << *it << std::endl;
-	// it++;
-	// std::cout << *it << std::endl;
+	for (it = v.rbegin(); it != v.rend(); it--)
+	{
+		std::cout << *it << std::endl;
+	}
 }
