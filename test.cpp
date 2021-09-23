@@ -6,12 +6,12 @@ using namespace std;
 
 int main () {
 	vector<int> v(1,1);
-	v.push_back(9);
-	v.push_back(7);
-	v.push_back(6);
-	v.push_back(1337);
+	v.push_back(2);
+	v.push_back(3);
+	v.push_back(4);
+	v.push_back(5);
 	vector<int>::reverse_iterator it = v.rbegin();
 	std::cout << *it << std::endl;
-	it++;
+	it = it + 1;
 	std::cout << *it << std::endl;
 }

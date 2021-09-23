@@ -1,11 +1,11 @@
-#ifndef VECTORITERATOR_HPP
-#define VECTORITERATOR_HPP
+#ifndef VECTORVectorIterator_HPP
+#define VECTORVectorIterator_HPP
 using namespace std;
 
 namespace ft
 {
     template< class T>
-    class Iterator
+    class VectorIterator
     {
     public:
         typedef T value_type;
@@ -15,31 +15,31 @@ namespace ft
         // Implicit conversions are performed whenever an expression of some type T1
         // is used in context that does not accept that type, but accepts some other type T2; in particular:
 		// when the expression is used as an operand with an operator that expects T2
-        operator Iterator<const T>() const {
+        operator VectorIterator<const T>() const {
             std::cout << "/* ****** operator ******* */" << std::endl;
-			return (Iterator<const T>(ptr)); 
+			return (VectorIterator<const T>(ptr)); 
 		}
     protected:
         pointer ptr;
     public:
-        Iterator() : ptr(0) {}
-        Iterator(pointer p) : ptr(p) {
-            std::cout << "Iterator: constructor" << std::endl;
+        VectorIterator() : ptr(0) {}
+        VectorIterator(pointer p) : ptr(p) {
+            std::cout << "VectorIterator: constructor" << std::endl;
         }
-        ~Iterator() { }
-        Iterator(const Iterator &x) {
-            // std::cout << "Iterator: copy" << std::endl;
+        ~VectorIterator() { }
+        VectorIterator(const VectorIterator &x) {
+            // std::cout << "VectorIterator: copy" << std::endl;
             *this = x;
         }
-        Iterator& operator=(const Iterator &x) {
-            // std::cout << "Iterator: assignation" << std::endl;
+        VectorIterator& operator=(const VectorIterator &x) {
+            // std::cout << "VectorIterator: assignation" << std::endl;
             ptr = x.ptr;
             return (*this);
         }
-		bool operator== (const Iterator<T>& rhs) {
+		bool operator== (const VectorIterator<T>& rhs) {
 			return (ptr == rhs.ptr);
 		}
-		bool operator!= (const Iterator<T>& rhs) {
+		bool operator!= (const VectorIterator<T>& rhs) {
 			return (!(*this == rhs));
 		}
         reference operator*() const {
@@ -48,55 +48,58 @@ namespace ft
         pointer operator->()  const{
             return (ptr);
         }
-        Iterator& operator++() {
+        VectorIterator& operator++() {
             ++ptr;
             return (*this);
         }
-        Iterator operator++(int) {
-            Iterator t(*this);
+        VectorIterator operator++(int) {
+            VectorIterator t(*this);
             ++(*this);
             return (t);
         }
-        Iterator& operator--() {
+        VectorIterator& operator--() {
+            cout << "pre decrement\n";
             --ptr;
             return (*this);
         }
-        Iterator operator--(int) {
-            Iterator t(*this);
+        VectorIterator operator--(int) {
+            cout << "post decrement\n";
+            VectorIterator t(*this);
             --(*this);
             return (t);
         }
-        Iterator operator+(difference_type n) {
-            Iterator t(*this);
+        VectorIterator operator+(difference_type n) {
+            VectorIterator t(*this);
             t.ptr += n;
             return (t);
         }
-        Iterator operator-(difference_type n) {
-            Iterator t(*this);
+        VectorIterator operator-(difference_type n) {
+            VectorIterator t(*this);
             t.ptr -= n;
             return (t);
         }
-        Iterator& operator+=(difference_type n) {
+        VectorIterator& operator+=(difference_type n) {
             ptr = ptr + n;
             return (*this);
         }
-        Iterator& operator-=(difference_type n) {
+        VectorIterator& operator-=(difference_type n) {
+            std::cout << "-=: VectorIterator" << std::endl;
             ptr = ptr - n;
             return (*this);
         }
-        difference_type operator-(Iterator & j) {
+        difference_type operator-(VectorIterator & j) {
             return (*this - j);
         }
-        bool operator<(const Iterator& rhs) {
+        bool operator<(const VectorIterator& rhs) {
             return (ptr < rhs.ptr);
         }
-        bool operator>(const Iterator& rhs) {
+        bool operator>(const VectorIterator& rhs) {
             return (ptr > rhs.ptr);
         }
-        bool operator<=(const Iterator& rhs) {
+        bool operator<=(const VectorIterator& rhs) {
             return (ptr <= rhs.ptr);
         }
-        bool operator>=(const Iterator& rhs) {
+        bool operator>=(const VectorIterator& rhs) {
             return (ptr >= rhs.ptr);
         }
         value_type operator[] (difference_type n) {

@@ -17,8 +17,8 @@ namespace ft
 	    typedef T* pointer;
 	    typedef const T* const_pointer;
 		typedef unsigned long size_type;
-		typedef ft::Iterator<T> iterator;
-		typedef ft::Iterator<const T> const_iterator;
+		typedef ft::VectorIterator<T> iterator;
+		typedef ft::VectorIterator<const T> const_iterator;
 		typedef ft::ReverseIterator<iterator> reverse_iterator;
 		// typedef ft::ReverseIterator<const_iterator> const_reverse_iterator;
 
@@ -38,10 +38,14 @@ namespace ft
 	vector (size_type n, const value_type& val = value_type(),
 	             const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
 			std::cout << "vector normal " << std::endl;
-			unsigned long i = 0;
 			_allocator = alloc;
 			_array = _allocator.allocate(_capacity);
-			_allocator.construct(_array, val);
+			unsigned long i = 0;
+			while (i < n)
+			{
+				_array[i] = val;
+				i++;
+			}
 	}
 	// template <class InputIterator>
 	// vector (InputIterator first, InputIterator last,
@@ -120,7 +124,9 @@ namespace ft
 	// void reserve (size_type n);
 	
 	/******************** Element access *********************/	
-	// reference operator[] (size_type n);
+	reference operator[] (size_type n) {
+		return (_array[n]);
+	}
 	// const_reference operator[] (size_type n) const;
 	// reference at (size_type n);
 	// const_reference at (size_type n) const;

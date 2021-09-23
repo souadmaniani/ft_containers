@@ -4,10 +4,15 @@
 
 int main ()
 {
-	ft::vector<int> v(2,1337);
+	ft::vector<int> v(3,1);
+	v[1] = 2;
+	v[2] = 3;
 	ft::vector<int>::reverse_iterator it = v.rbegin();
-	for (it = v.rbegin(); it != v.rend(); it--)
-	{
-		std::cout << *it << std::endl;
-	}
+	ft::vector<int>::reverse_iterator it1;
+	std::cout << *it << std::endl;
+	++it;
+	std::cout << *it << std::endl;
+	it += 1;
+	std::cout << *it << std::endl;
+	
 }
