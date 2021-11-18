@@ -6,7 +6,7 @@ using namespace std;
 
 namespace ft
 {
-	template <class T, class Alloc = std::allocator<T> > 
+	template <class T, class Alloc = allocator<T> > 
 	class vector
 	{
 	public:
@@ -28,40 +28,53 @@ namespace ft
 		pointer		_array;
 		allocator_type _allocator;
 	public:
-	/******************** Member functions *********************/	
-	// without explicit keyword
+	/******************** Member functions *********************/
+	// WITHOUT EXPLICIT
 	vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0){
-        std::cout << "here is the constructor for the vector" << std::endl;
+        cout << "here is the constructor for the vector" << endl;
 		_allocator = alloc;
 		_array = _allocator.allocate(_capacity);
 	}
-	vector (size_type n, const value_type& val = value_type(),
+	
+	explicit vector (size_type n, const value_type& val = value_type(),
 	             const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
-			std::cout << "vector normal " << std::endl;
+			unsigned long i;
+			
+			i = 0;
+			cout << "vector normal " << endl;
 			_allocator = alloc;
 			_array = _allocator.allocate(_capacity);
-			unsigned long i = 0;
 			while (i < n)
 			{
 				_array[i] = val;
 				i++;
 			}
 	}
+
 	// template <class InputIterator>
 	// vector (InputIterator first, InputIterator last,
-	//              const allocator_type& alloc = allocator_type()) {
-	// 				 std::cout << "Input Iterator" << std::endl;
+	// 		const allocator_type& alloc = allocator_type()) {
+	// 			// ft::vector<int> second (4,10);
+	// 			// enable_if first and last are type InputIterator
+	// 			iterator it = this->begin();
+	// 			while(first != last) {
+	// 				it = first;
+	// 				it++;
+	// 				first++;
+	// 			}
 	// }
+
 	vector (const vector& x) {
-       	std::cout << "here is the copy" << std::endl;
+       	cout << "here is the copy" << endl;
 		*this = x;
 	}
+
 	~vector() {
 		_allocator.deallocate(_array, _capacity);
 		cout << "free memory\n";
 	}
 	vector& operator= (const vector& x) {
-        std::cout << "here is the assignation" << std::endl;
+        cout << "here is the assignation" << endl;
 		unsigned long i;
 
 		i = 0;

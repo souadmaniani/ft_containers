@@ -39,3 +39,4 @@
 - use case: (https://www.mashen.zone/thread-3676500.htm)
 
 - In C++ an lvalue is something that points to a specific memory location. On the other hand, a rvalue is something that doesn't point anywhere. In general, rvalues are temporary and short lived, while lvalues live a longer life since they exist as variables. It's also fun to think of lvalues as containers and rvalues as things contained in the containers. Without a container, they would expire.
+- use of refrence in copy constructor https://www.quora.com/Why-does-an-object-pass-by-reference-to-a-copy-constructor-in-C++
