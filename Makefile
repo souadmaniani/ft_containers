@@ -1,5 +1,5 @@
 NAME	=	a.out
-SRC		=	main.cpp utils/utils.cpp
+SRC		=	main.cpp 
 OBJ		=	main.o
 
 all		:	$(NAME)

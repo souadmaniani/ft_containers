@@ -1,4 +1,4 @@
-            #ifndef REVERSEITERATOR_HPP
+#ifndef REVERSEITERATOR_HPP
 #define REVERSEITERATOR_HPP
 
 // ReverseIterator::base
@@ -10,7 +10,6 @@ namespace ft
     class ReverseIterator : public RandomIterator 
     {
     public:
-
         typedef RandomIterator iterator_type;
         typedef typename iterator_type::pointer pointer;
         typedef typename iterator_type::reference reference;

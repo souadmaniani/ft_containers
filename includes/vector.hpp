@@ -2,7 +2,7 @@
 #define VECTOR_HPP
 #include "VectorIterator.hpp"
 #include "ReverseIterator.hpp"
-// using namespace std;
+#include "../utils/utils.hpp"
 
 namespace ft
 {
@@ -51,7 +51,6 @@ namespace ft
 			}
 	}
 
-	
 	template <class InputIterator>
 	vector (InputIterator first, InputIterator last,
 			const allocator_type& alloc = allocator_type(),
@@ -59,8 +58,9 @@ namespace ft
 				// enable_if first and last are type InputIterator
 				std::cout << "range\n";
 				_allocator = alloc;
-				_array = _allocator.allocate(last - first);
-				iterator it = this->begin();
+				_size = last - first;
+				_capacity = last - first;
+				_array = _allocator.allocate(_size);
 				unsigned long i;
 				i = 0;
 				while (first != last)
@@ -79,6 +79,7 @@ namespace ft
 		_allocator.deallocate(_array, _capacity);
 		std::cout << "free memory\n";
 	}
+
 	vector& operator= (const vector& x) {
         std::cout << "here is the assignation" << "\n";
 		unsigned long i;
