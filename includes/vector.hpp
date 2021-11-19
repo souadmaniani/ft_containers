@@ -2,11 +2,11 @@
 #define VECTOR_HPP
 #include "VectorIterator.hpp"
 #include "ReverseIterator.hpp"
-using namespace std;
+// using namespace std;
 
 namespace ft
 {
-	template <class T, class Alloc = allocator<T> > 
+	template <class T, class Alloc = std::allocator<T> > 
 	class vector
 	{
 	public:
@@ -31,7 +31,7 @@ namespace ft
 	/******************** Member functions *********************/
 	// WITHOUT EXPLICIT
 	vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0){
-        cout << "here is the constructor for the vector" << endl;
+        std::cout << "default" << "\n";
 		_allocator = alloc;
 		_array = _allocator.allocate(_capacity);
 	}
@@ -41,9 +41,9 @@ namespace ft
 			unsigned long i;
 			
 			i = 0;
-			cout << "vector normal " << endl;
+			std::cout << "fill" << "\n";
 			_allocator = alloc;
-			_array = _allocator.allocate(_capacity);
+			_array = _allocator.allocate(_size);
 			while (i < n)
 			{
 				_array[i] = val;
@@ -51,30 +51,36 @@ namespace ft
 			}
 	}
 
-	// template <class InputIterator>
-	// vector (InputIterator first, InputIterator last,
-	// 		const allocator_type& alloc = allocator_type()) {
-	// 			// ft::vector<int> second (4,10);
-	// 			// enable_if first and last are type InputIterator
-	// 			iterator it = this->begin();
-	// 			while(first != last) {
-	// 				it = first;
-	// 				it++;
-	// 				first++;
-	// 			}
-	// }
+	
+	template <class InputIterator>
+	vector (InputIterator first, InputIterator last,
+			const allocator_type& alloc = allocator_type(),
+			typename enable_if<!is_integral<InputIterator>::value>::type* = 0) {
+				// enable_if first and last are type InputIterator
+				std::cout << "range\n";
+				_allocator = alloc;
+				_array = _allocator.allocate(last - first);
+				iterator it = this->begin();
+				unsigned long i;
+				i = 0;
+				while (first != last)
+				{
+					_array[i++] = *first;
+					first++;
+				}
+	}
 
 	vector (const vector& x) {
-       	cout << "here is the copy" << endl;
+       	std::cout << "here is the copy" << "\n";
 		*this = x;
 	}
 
 	~vector() {
 		_allocator.deallocate(_array, _capacity);
-		cout << "free memory\n";
+		std::cout << "free memory\n";
 	}
 	vector& operator= (const vector& x) {
-        cout << "here is the assignation" << endl;
+        std::cout << "here is the assignation" << "\n";
 		unsigned long i;
 
 		i = 0;
@@ -192,17 +198,17 @@ namespace ft
 	// ostream & operator<<(ostream & o, vector<int> const & rhs) {
 	// unsigned long i = 0;
 
-	// cout << "\e[1;35m/*******Vector Details: *******/\e[1;37m" << endl;
-	// cout << "size: " << rhs._size << '\n';
-	// cout << "capacity: " << rhs._capacity << '\n';
-	// cout << "is_empty: " << boolalpha << rhs.empty() << '\n';
+	// std::cout << "\e[1;35m/*******Vector Details: *******/\e[1;37m" << "\n";
+	// std::cout << "size: " << rhs._size << '\n';
+	// std::cout << "capacity: " << rhs._capacity << '\n';
+	// std::cout << "is_empty: " << boolalpha << rhs.empty() << '\n';
 	// while (i < rhs._size)
 	// {
 	// 	o << rhs._array[i] << " ";
 	// 	i++;
 	// }
-	// cout << '\n';
-	// cout << "\e[1;35m/******* End Details *******/\e[1;37m" << endl;
+	// std::cout << '\n';
+	// std::cout << "\e[1;35m/******* End Details *******/\e[1;37m" << "\n";
 	// return o;
 	// }
 }

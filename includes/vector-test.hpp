@@ -2,7 +2,7 @@
 #define VECTOR_TEST_HPP
 #include <iostream>
 
-using namespace std;
+// using namespace std;
 
 namespace ft {
 	class vector

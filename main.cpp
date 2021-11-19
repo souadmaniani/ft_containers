@@ -6,19 +6,9 @@
 
 int main ()
 {
-	ft::vector<int> first;               
-	// ft::vector<int> second (4,10);
-	struct MyStruct
-	{
-		int x;
-		char y;
-
-	};
-	struct MyStruct t;
-	t.x = 1337;
-	std::cout << t.x;
-	// ft::vector<int> third (second.begin(),second.end());
-	// cout << third[0];
+ 	ft::vector<int> v1;
+    ft::vector<int> v2(3, 5);
+    ft::vector<int> v3(v2.begin(), v2.end());
 	// cout << v[0] << "\n";
 	// v[1] = 2;
 	// v[2] = 3;

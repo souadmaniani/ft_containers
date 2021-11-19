@@ -1,16 +1,7 @@
-#include  <iostream>
 #include <type_traits>
-using namespace std;
-template<bool Cond, class T= void>
-struct enable_if
-{
 
-};
-template<class T>
-struct enable_if<true, T>
-{
-  typedef T type;
-};
+template<bool Cond, class T = void> struct enable_if {};
+template<class T> struct enable_if<true, T> { typedef T type; };
 
 
 template <class T>

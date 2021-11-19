@@ -1,6 +1,5 @@
 #ifndef VECTORVectorIterator_HPP
 #define VECTORVectorIterator_HPP
-using namespace std;
 
 namespace ft
 {
@@ -24,7 +23,6 @@ namespace ft
     public:
         VectorIterator() : ptr(0) {}
         VectorIterator(pointer p) : ptr(p) {
-            std::cout << "VectorIterator: constructor" << std::endl;
         }
         ~VectorIterator() { }
         VectorIterator(const VectorIterator &x) {
@@ -58,12 +56,10 @@ namespace ft
             return (t);
         }
         VectorIterator& operator--() {
-            cout << "pre decrement\n";
             --ptr;
             return (*this);
         }
         VectorIterator operator--(int) {
-            cout << "post decrement\n";
             VectorIterator t(*this);
             --(*this);
             return (t);
@@ -83,12 +79,11 @@ namespace ft
             return (*this);
         }
         VectorIterator& operator-=(difference_type n) {
-            std::cout << "-=: VectorIterator" << std::endl;
             ptr = ptr - n;
             return (*this);
         }
-        difference_type operator-(VectorIterator & j) {
-            return (*this - j);
+        difference_type operator-(VectorIterator j) {
+            return (this->ptr - j.ptr);
         }
         bool operator<(const VectorIterator& rhs) {
             return (ptr < rhs.ptr);

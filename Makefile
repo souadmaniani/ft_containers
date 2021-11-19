@@ -1,5 +1,5 @@
- NAME	=	a.out
-SRC		=	main.cpp
+NAME	=	a.out
+SRC		=	main.cpp utils/utils.cpp
 OBJ		=	main.o
 
 all		:	$(NAME)
@@ -8,6 +8,7 @@ $(NAME) : $(SRC)
 			-std=c++98 -I includes $(SRC) -o $(NAME) 
 clean	:
 		rm -f $(NAME)
+		rm -rf a.out.dSYM
 fclean	: clean	
 re		: fclean
 		make all
