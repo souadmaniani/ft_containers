@@ -43,20 +43,20 @@ namespace ft
         }
         // the pre-increment decrements the base iterator (as if applying operator-- to it).
         ReverseIterator& operator++() {
-            // return base().operator--()); or // MA3JBTNICH HADI
             std::cout << "operator++()" << std::endl;
-            --this->ptr;
+            base().operator--();
+            std::cout << (base() - 3).operator*() << "\n";
             return (*this);
         }
-        ReverseIterator  operator++(int) {
-            ReverseIterator temp = *this;
-            ++(*this);
-            return (temp);
-        }
-        ReverseIterator& operator+= (difference_type n) {
-            base().operator-=(n);
-            return (*this);
-        }
+        // ReverseIterator  operator++(int) {
+        //     ReverseIterator temp = *this;
+        //     ++(*this);
+        //     return (temp);
+        // }
+        // ReverseIterator& operator+= (difference_type n) {
+        //     base().operator-=(n);
+        //     return (*this);
+        // }
         // ReverseIterator operator- (difference_type n) const;
         // ReverseIterator& operator--();
         // ReverseIterator  operator--(int);

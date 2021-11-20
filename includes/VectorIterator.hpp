@@ -56,7 +56,7 @@ namespace ft
             return (t);
         }
         VectorIterator& operator--() {
-            std::cout << "/* message */" << std::endl;
+            std::cout << "VectorIterator& operator--()" << std::endl;
             --ptr;
             return (*this);
         }
