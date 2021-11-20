@@ -19,16 +19,21 @@ namespace ft
 		// 	return (ReverseIterator<const RandomIterator>(this->ptr)); 
 		// }
 
-        ReverseIterator()  {}
-        explicit ReverseIterator (iterator_type it): iterator_type(it) { }
-        // ReverseIterator (const ReverseIterator<RandomIterator>& rev_it) {
-        //     *this = rev_it;
-        // }
-        iterator_type base() const {
-            return (*this);
+        ReverseIterator()  {} /**** default ***/
+        explicit ReverseIterator (iterator_type it): iterator_type(it) { } /**** initialisation ***/
+        ReverseIterator (const ReverseIterator<RandomIterator>& rev_it) { /**** copy ***/
+            *this = rev_it;
         }
+
+        // The base iterator refers to the element that is next
+        // to the element the reverse_iterator is currently pointing to
+        // std::reverse_iterator(it).base() == it
+        iterator_type base() const {
+            return (*(this - 1));
+        }
+        // decreases a copy of its base iterator and returns the result of dereferencing it
         reference operator*() const {
-            return ((base()).operator*());
+            return ((base() - 1).operator*() );
         }
         ReverseIterator operator+ (difference_type n) const {
             std::cout << "operator+" << std::endl;

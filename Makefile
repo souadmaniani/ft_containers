@@ -4,7 +4,7 @@ OBJ		=	main.o
 
 all		:	$(NAME)
 $(NAME) : $(SRC)
-			clang++  -Wall -Wextra -Werror \
+			clang++  -Werror \
 			-std=c++98 -I includes $(SRC) -o $(NAME) 
 clean	:
 		rm -f $(NAME)
