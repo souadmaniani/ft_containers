@@ -1,7 +1,7 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 #include "VectorIterator.hpp"
-#include "ReverseIterator.hpp"
+#include "reverse_iterator.hpp"
 #include "../utils/utils.hpp"
 
 namespace ft
@@ -19,8 +19,8 @@ namespace ft
 		typedef unsigned long size_type;
 		typedef ft::VectorIterator<T> iterator;
 		typedef ft::VectorIterator<const T> const_iterator;
-		typedef ft::ReverseIterator<iterator> reverse_iterator;
-		// typedef ft::ReverseIterator<const_iterator> const_reverse_iterator;
+		typedef ft::reverse_iterator<iterator> reverse_iterator;
+		// typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
 
 	private:
 		size_type	_size;
@@ -115,13 +115,13 @@ namespace ft
 	}
 	/***** Reverse Iterator***/
 	reverse_iterator rbegin() {
-		return (reverse_iterator(_array + _size - 1));
+		return (reverse_iterator(end()));
 	}
 	// const_reverse_iterator rbegin() const {
 	// 	return (const_reverse_iterator(_array + _size - 1));
 	// }
 	reverse_iterator rend() {
-		return (reverse_iterator(_array - 1));
+		return (reverse_iterator(begin()));
 	}
 	// const_reverse_iterator rend() const {
 	// 	return (const_reverse_iterator(_array - 1));

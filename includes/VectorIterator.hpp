@@ -1,5 +1,5 @@
-#ifndef VECTORVectorIterator_HPP
-#define VECTORVectorIterator_HPP
+#ifndef VECTORITERATOR_HPP
+#define VECTORITERATOR_HPP
 
 namespace ft
 {
@@ -56,7 +56,6 @@ namespace ft
             return (t);
         }
         VectorIterator& operator--() {
-            std::cout << "VectorIterator& operator--()" << std::endl;
             --ptr;
             return (*this);
         }
