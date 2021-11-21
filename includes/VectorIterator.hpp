@@ -3,6 +3,12 @@
 
 namespace ft
 {
+    // declaration of the function template
+    template<typename U>
+    class VectorIterator;
+    template<typename U>
+    bool operator== (const VectorIterator<U>& lhs, const VectorIterator<U>& rhs);
+    
     template< class T>
     class VectorIterator
     {
@@ -15,7 +21,7 @@ namespace ft
         // is used in context that does not accept that type, but accepts some other type T2; in particular:
 		// when the expression is used as an operand with an operator that expects T2
         operator VectorIterator<const T>() const {
-            std::cout << "/* ****** operator ******* */" << std::endl;
+            std::cout << "/* ****** Implicit conversion ******* */" << std::endl;
 			return (VectorIterator<const T>(ptr)); 
 		}
     protected:
@@ -34,12 +40,6 @@ namespace ft
             ptr = x.ptr;
             return (*this);
         }
-		bool operator== (const VectorIterator<T>& rhs) {
-			return (ptr == rhs.ptr);
-		}
-		bool operator!= (const VectorIterator<T>& rhs) {
-			return (!(*this == rhs));
-		}
         reference operator*() const {
             return (*ptr);
         }
@@ -85,24 +85,45 @@ namespace ft
         difference_type operator-(VectorIterator j) {
             return (this->ptr - j.ptr);
         }
-        bool operator<(const VectorIterator& rhs) {
-            return (ptr < rhs.ptr);
-        }
-        bool operator>(const VectorIterator& rhs) {
-            return (ptr > rhs.ptr);
-        }
-        bool operator<=(const VectorIterator& rhs) {
-            return (ptr <= rhs.ptr);
-        }
-        bool operator>=(const VectorIterator& rhs) {
-            return (ptr >= rhs.ptr);
-        }
         value_type operator[] (difference_type n) {
             return (ptr[n]);
         }
+        /***********************************************************************************/
+        // friend bool operator== (const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
+        //     return (lhs.ptr == rhs.ptr);
+        // }
+        // The <> after the name of the friend function is needed to make clear that the friend is a template function
+		friend bool operator==<> (const VectorIterator<const T>& lhs, const VectorIterator<const T>& rhs);
+        // friend bool operator<(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
+        // friend bool operator>(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
+        // friend bool operator<=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
+        // friend bool operator>=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
+        /***********************************************************************************/
     };
-    
- 
+        template< class T>
+        bool operator== (const VectorIterator<const T>& lhs, const VectorIterator<const T>& rhs) {
+			return (lhs.ptr == rhs.ptr);
+		}
+        // template< class T>
+		// bool operator!= (const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
+		// 	return (!(lhs == rhs));
+		// }
+        // template< class T>
+        // bool operator<(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
+        //     return (lhs.ptr < rhs.ptr);
+        // }
+        // template< class T>
+        // bool operator>(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
+        //     return (lhs.ptr > rhs.ptr);
+        // }
+        // template< class T>
+        // bool operator<=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
+        //     return (lhs.ptr <= rhs.ptr);
+        // }
+        // template< class T>
+        // bool operator>=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
+        //     return (lhs.ptr >= rhs.ptr);
+        // }
 }
 
 #endif
