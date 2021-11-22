@@ -74,29 +74,32 @@ namespace ft
         reference operator[] (difference_type n) const {
             return (*(base()-= ++n));
         }
-        template <class Iterator>
-        friend bool operator== (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
-            return (1 == 1);
+        template <class It>
+        friend typename reverse_iterator<It>::difference_type operator-(const reverse_iterator<It>& lhs, const reverse_iterator<It>& rhs) {
+            std::cout << "/* message */" << std::endl;
+            return (lhs.base() - rhs.base());
         }
-        template <class Iterator>
-        friend bool operator!= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        template <class Iterator>
-        friend bool operator<  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        template <class Iterator>
-        friend bool operator<= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        template <class Iterator>
-        friend bool operator>  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        template <class Iterator>
-        friend bool operator>= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
 
         // template <class Iterator>
-        // typename reverse_iterator<Iterator>::difference_type operator- (
-        //     const reverse_iterator<Iterator>& lhs,
-        //     const reverse_iterator<Iterator>& rhs);
+        // friend bool operator== (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
+        //     return ((lhs - 2) == 0);
+        // }
+        //     }
+        // template <class It>
+        // friend reverse_iterator<It> operator+(typename reverse_iterator<It>::difference_type n, const reverse_iterator<It>& rev_it) {
+
+        // }
         // template <class Iterator>
-        // reverse_iterator<Iterator> operator+ (
-        //     typename reverse_iterator<Iterator>::difference_type n,
-        //     const reverse_iterator<Iterator>& rev_it);
+        // friend bool operator!= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
+        // template <class Iterator>
+        // friend bool operator<  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
+        // template <class Iterator>
+        // friend bool operator<= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
+        // template <class Iterator>
+        // friend bool operator>  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
+        // template <class Iterator>
+        // friend bool operator>= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
+
     };
 }
 

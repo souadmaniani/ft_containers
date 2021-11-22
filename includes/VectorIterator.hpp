@@ -2,13 +2,7 @@
 #define VECTORITERATOR_HPP
 
 namespace ft
-{
-    // declaration of the function template
-    template<typename U>
-    class VectorIterator;
-    template<typename U>
-    bool operator== (const VectorIterator<U>& lhs, const VectorIterator<U>& rhs);
-    
+{   
     template< class T>
     class VectorIterator
     {
@@ -82,48 +76,47 @@ namespace ft
             ptr = ptr - n;
             return (*this);
         }
-        difference_type operator-(VectorIterator j) {
-            return (this->ptr - j.ptr);
-        }
         value_type operator[] (difference_type n) {
             return (ptr[n]);
         }
         /***********************************************************************************/
-        // friend bool operator== (const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
-        //     return (lhs.ptr == rhs.ptr);
-        // }
-        // The <> after the name of the friend function is needed to make clear that the friend is a template function
-		friend bool operator==<> (const VectorIterator<const T>& lhs, const VectorIterator<const T>& rhs);
-        // friend bool operator<(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
-        // friend bool operator>(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
-        // friend bool operator<=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
-        // friend bool operator>=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs);
+        template<typename U>
+        friend VectorIterator operator+(difference_type n, const VectorIterator<U>& rhs) {
+            VectorIterator t(rhs);
+            t.ptr += n;
+            return (t);
+        }
+        template<typename U, typename V>
+        friend difference_type operator-(const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
+            return (lhs.ptr - rhs.ptr);
+        }
+        template<typename U, typename V>
+		friend bool operator== (const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
+            std::cout << "ax hada" << std::endl;
+            	return (lhs.ptr == rhs.ptr);
+        }
+        template<typename U, typename V>
+        friend bool operator!= (const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
+			return (!(lhs == rhs));
+        }
+        template<typename U, typename V>
+        friend bool operator<(const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
+            return (lhs.ptr < rhs.ptr);
+        }
+        template<typename U, typename V>
+        friend bool operator>(const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
+            return (lhs.ptr > rhs.ptr);
+        }
+        template<typename U, typename V>
+        friend bool operator<=(const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
+            return (lhs.ptr <= rhs.ptr);
+        }
+        template<typename U, typename V>
+        friend bool operator>=(const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
+            return (lhs.ptr >= rhs.ptr);
+        }
         /***********************************************************************************/
     };
-        template< class T>
-        bool operator== (const VectorIterator<const T>& lhs, const VectorIterator<const T>& rhs) {
-			return (lhs.ptr == rhs.ptr);
-		}
-        // template< class T>
-		// bool operator!= (const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
-		// 	return (!(lhs == rhs));
-		// }
-        // template< class T>
-        // bool operator<(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
-        //     return (lhs.ptr < rhs.ptr);
-        // }
-        // template< class T>
-        // bool operator>(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
-        //     return (lhs.ptr > rhs.ptr);
-        // }
-        // template< class T>
-        // bool operator<=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
-        //     return (lhs.ptr <= rhs.ptr);
-        // }
-        // template< class T>
-        // bool operator>=(const VectorIterator<T>& lhs, const VectorIterator<T>& rhs) {
-        //     return (lhs.ptr >= rhs.ptr);
-        // }
 }
 
 #endif
