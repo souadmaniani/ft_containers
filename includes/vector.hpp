@@ -20,18 +20,33 @@ namespace ft
 		typedef ft::VectorIterator<T> iterator;
 		typedef ft::VectorIterator<const T> const_iterator;
 		typedef ft::reverse_iterator<iterator> reverse_iterator;
-		// typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
+		typedef ft::reverse_iterator<const iterator> const_reverse_iterator;
 
 	private:
 		size_type	_size;
 		size_type	_capacity;
 		pointer		_array;
 		allocator_type _allocator;
+		pointer array_copy(pointer arr, unsigned long size) {
+			pointer temp =  _allocator.allocate(size);
+			unsigned long i = 0;
+			while (i < size)
+			{
+				temp[i] = arr[i];
+				i++;
+			}
+			return (temp);
+		}
+		void print_array(pointer arr, unsigned long n) {
+			for (size_t i = 0; i < n; i++)
+			{
+				std::cout << arr[i] << std::endl;
+			}
+		}
 	public:
 	/******************** Member functions *********************/
 	// WITHOUT EXPLICIT
 	vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0){
-        std::cout << "default" << "\n";
 		_allocator = alloc;
 		_array = _allocator.allocate(_capacity);
 	}
@@ -39,9 +54,7 @@ namespace ft
 	explicit vector (size_type n, const value_type& val = value_type(),
 	             const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n) {
 			unsigned long i;
-			
 			i = 0;
-			std::cout << "fill" << "\n";
 			_allocator = alloc;
 			_array = _allocator.allocate(_size);
 			while (i < n)
@@ -56,7 +69,6 @@ namespace ft
 			const allocator_type& alloc = allocator_type(),
 			typename enable_if<!is_integral<InputIterator>::value>::type* = 0) {
 				// enable_if first and last are type InputIterator
-				std::cout << "range\n";
 				_allocator = alloc;
 				_size = last - first;
 				_capacity = last - first;
@@ -71,17 +83,14 @@ namespace ft
 	}
 
 	vector (const vector& x) {
-       	std::cout << "here is the copy" << "\n";
 		*this = x;
 	}
 
 	~vector() {
 		_allocator.deallocate(_array, _capacity);
-		std::cout << "free memory\n";
 	}
 
 	vector& operator= (const vector& x) {
-        std::cout << "here is the assignation" << "\n";
 		unsigned long i;
 
 		i = 0;
@@ -117,31 +126,59 @@ namespace ft
 	reverse_iterator rbegin() {
 		return (reverse_iterator(end()));
 	}
-	// const_reverse_iterator rbegin() const {
-	// 	return (const_reverse_iterator(_array + _size - 1));
-	// }
+	const_reverse_iterator rbegin() const {
+		return (const_reverse_iterator(end()));
+	}
 	reverse_iterator rend() {
 		return (reverse_iterator(begin()));
 	}
-	// const_reverse_iterator rend() const {
-	// 	return (const_reverse_iterator(_array - 1));
-	// }
+	const_reverse_iterator rend() const {
+		return (const_reverse_iterator(begin()));
+	}
 
 	/******************** Capacity *********************/	
-	// size_type size() const {
-	// 	return (_size);
+	size_type size() const {
+		return (_size);
+	}
+	size_type max_size() const {
+		return (4611686018427387903);
+	}
+	void resize (size_type n, value_type val = value_type()) {
+		pointer temp;
+		if (n < _size) {
+			temp = array_copy(_array, n);
+			_allocator.deallocate(_array, _capacity);
+			_array = array_copy(temp, n);
+			_size = n;
+			_capacity = n;
+			_allocator.deallocate(temp, n);
+		}
+		else if (n > _size)
+		{
+			if (n > _capacity) {
+				temp = array_copy(_array, n);
+				_allocator.deallocate(_array, _capacity);
+				_array = array_copy(temp, n);
+				_allocator.deallocate(temp, n);
+			}
+			unsigned long i = 0;
+			while(i < n - _size) {
+				_array[_size + i] = val;
+				i++;
+			}
+			_size = n;
+			_capacity = n;
+		}
+	}
+	size_type capacity() const {
+		return (_capacity);
+	}
+	bool empty() const {
+		return (_size == 0);
+	}
+	// void reserve (size_type n) {
+		
 	// }
-	// size_type max_size() const {
-	// 	return (4611686018427387903);
-	// }
-	// void resize (size_type n, value_type val = value_type());
-	// size_type capacity() const {
-	// 	return (_capacity);
-	// }
-	// bool empty() const {
-	// 	return (_size == 0);
-	// }
-	// void reserve (size_type n);
 	
 	/******************** Element access *********************/	
 	reference operator[] (size_type n) {
