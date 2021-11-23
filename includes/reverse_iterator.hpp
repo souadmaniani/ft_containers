@@ -7,28 +7,28 @@
 namespace ft
 {
     template <class RandomIterator>
-    class reverse_iterator : public RandomIterator 
+    class reverse_iterator
     {
     public:
         typedef RandomIterator iterator_type;
         typedef typename iterator_type::pointer pointer;
         typedef typename iterator_type::reference reference;
 		typedef typename iterator_type::difference_type difference_type;
-        
+    protected:
+        iterator_type current;
+    public:
         reverse_iterator()  {} /**** default ***/
-        explicit reverse_iterator (iterator_type it): iterator_type(it) {} /**** initialisation ***/
+        explicit reverse_iterator (iterator_type it): current(it) {}  /**** initialisation ***/
         reverse_iterator (const reverse_iterator<RandomIterator>& rev_it) { /**** copy ***/
             *this = rev_it;
         }
-        // The base iterator is an iterator of the same type as the one used
-        // to construct the reverse_iterator
         // Returns a copy of the base iterator
         iterator_type base() const {
-        	return (*this);
+        	return (current);
         }
         // decreases a copy of its base iterator and returns the result of dereferencing it
         reference operator*() const {
-        	    return (*(--base()));
+        	return (*(--base()));
         }
         reverse_iterator operator+(difference_type n) const {
             iterator_type it = base().operator-(n);
@@ -37,7 +37,7 @@ namespace ft
         }
         // the pre-increment decrements the base iterator (as if applying operator-- to it).
         reverse_iterator& operator++() {
-            iterator_type::operator--();
+            --current;
             return (*this);
         }
         reverse_iterator operator++(int) {
@@ -46,16 +46,16 @@ namespace ft
             return (temp);
         }
         reverse_iterator& operator+= (difference_type n) {
-            iterator_type::operator-=(n);
+            current -=n;
             return (*this);
         }
         reverse_iterator operator-(difference_type n) const {
-            iterator_type it = this->base().operator+(n);
+            iterator_type it = base().operator+(n);
             reverse_iterator rev_itr(it);
             return (rev_itr);
         }
         reverse_iterator& operator--() {
-            iterator_type::operator++();
+            ++current;
             return (*this);
         }
         reverse_iterator operator--(int) {
@@ -64,7 +64,7 @@ namespace ft
             return (temp);
         }
         reverse_iterator& operator-= (difference_type n) {
-            iterator_type::operator+=(n);
+            current +=n;
             return (*this);
         }
         // The iterator shall point to some object in order to be dereferenceable.
@@ -74,32 +74,42 @@ namespace ft
         reference operator[] (difference_type n) const {
             return (*(base()-= ++n));
         }
+        /*******************************************************************************************************************************/
+        template <class It>
+        friend reverse_iterator<It> operator+(typename reverse_iterator<It>::difference_type n, const reverse_iterator<It>& rev_it) {
+            reverse_iterator temp = *rev_it;
+            temp.current +=n;
+            return (temp);
+        }
         template <class It>
         friend typename reverse_iterator<It>::difference_type operator-(const reverse_iterator<It>& lhs, const reverse_iterator<It>& rhs) {
-            std::cout << "/* message */" << std::endl;
-            return (lhs.base() - rhs.base());
+            return (rhs.base() - lhs.base());
         }
-
-        // template <class Iterator>
-        // friend bool operator== (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
-        //     return ((lhs - 2) == 0);
-        // }
-        //     }
-        // template <class It>
-        // friend reverse_iterator<It> operator+(typename reverse_iterator<It>::difference_type n, const reverse_iterator<It>& rev_it) {
-
-        // }
-        // template <class Iterator>
-        // friend bool operator!= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        // template <class Iterator>
-        // friend bool operator<  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        // template <class Iterator>
-        // friend bool operator<= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        // template <class Iterator>
-        // friend bool operator>  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-        // template <class Iterator>
-        // friend bool operator>= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
-
+        template <class Iterator>
+        friend bool operator== (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
+            return (lhs.base() == rhs.base());
+        }
+        template <class Iterator>
+        friend bool operator!= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
+            return (!(lhs.base() == rhs.base()));
+        }
+        template <class Iterator>
+        friend bool operator< (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
+            return (lhs.base() > rhs.base());
+        }
+        template <class Iterator>
+        friend bool operator<= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
+            return (lhs.base() >= rhs.base());
+        }
+        template <class Iterator>
+        friend bool operator> (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
+            return (lhs.base() < rhs.base());
+        }
+        template <class Iterator>
+        friend bool operator>= (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
+             return (lhs.base() <= rhs.base());
+        }
+        /*******************************************************************************************************************************/
     };
 }
 

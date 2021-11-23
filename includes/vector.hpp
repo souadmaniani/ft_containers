@@ -1,9 +1,9 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
-#include "VectorIterator.hpp"
+#include "vectorIterator.hpp"
 #include "reverse_iterator.hpp"
 #include "../utils/utils.hpp"
-
+// !!capacity bhal dyal std::vector
 namespace ft
 {
 	template <class T, class Alloc = std::allocator<T> > 

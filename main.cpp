@@ -1,6 +1,5 @@
 #include <iostream>
 #include "includes/vector.hpp"
-#include "includes/VectorIterator.hpp"
 #include "vector"
 #include <string>
 
@@ -9,9 +8,14 @@ int main () {
 	myvector[8] = 13;
 	myvector[1] = 37;
 	myvector[0] = 5;
-	ft::vector<int>::reverse_iterator from(myvector.rbegin());
-	ft::vector<int>::const_iterator from1(myvector.rend());
-	std::cout << "myvector has " << from - from1 << " elements.\n";
-
+	ft::vector<int>::reverse_iterator from1 = myvector.rbegin();
+	ft::vector<int>::reverse_iterator from2 = myvector.rend();
+	if (from1 > from2)
+		std::cout << ">" << std::endl;
+	else
+	{
+		std::cout << "l3akss" << std::endl;
+	}
   return 0;
 }
+

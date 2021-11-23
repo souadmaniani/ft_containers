@@ -21,12 +21,10 @@ namespace ft
     protected:
         pointer ptr;
     public:
-        VectorIterator() : ptr(0) {}
-        VectorIterator(pointer p) : ptr(p) {
-        }
+        explicit VectorIterator() : ptr(0) {}
+        explicit VectorIterator(pointer p) : ptr(p) { }
         ~VectorIterator() { }
         VectorIterator(const VectorIterator &x) {
-            // std::cout << "VectorIterator: copy" << std::endl;
             *this = x;
         }
         VectorIterator& operator=(const VectorIterator &x) {
@@ -92,7 +90,7 @@ namespace ft
         }
         template<typename U, typename V>
 		friend bool operator== (const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
-            std::cout << "ax hada" << std::endl;
+           
             	return (lhs.ptr == rhs.ptr);
         }
         template<typename U, typename V>
