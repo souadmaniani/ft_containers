@@ -77,8 +77,7 @@ namespace ft
 				_size = last - first;
 				_capacity = last - first;
 				_array = _allocator.allocate(_size);
-				unsigned long i;
-				i = 0;
+				unsigned long i = 0;
 				while (first != last)
 				{
 					_array[i++] = *first;
@@ -265,24 +264,28 @@ namespace ft
 	}
 	iterator insert (iterator position, const value_type& val) { /* single element */
 		pointer temp;
-		unsigned long i = 0;
-		if (position == end() - 1)
-			push_back(val);
-		else {
-			temp = _allocator.allocate(_size);
-			temp = array_copy(temp, _array, _size);
-			if (_size == _capacity) {
-				_allocator.deallocate(_array, _capacity);
-				_capacity = _size * 2;
-				_array = _allocator.allocate(_capacity);
-				_size++;
 
-				// while(i < _size) {
-				// 	if ()
-				// }
-				
-			}
+		long long index = get_index(iterator &position);
+		unsigned long i = 0;
+		if (_size == _capacity) {
+			_capacity = _size * 2;
+			temp = _allocator.allocate(_capacity);
+			temp = array_copy(temp, _array, _size);
+			_allocator.deallocate(_array, _capacity);
+			_array = temp;
 		}
+		// i = _size;
+		// while (i-- > index)
+		// 	_array[i + 1] = _array[i];
+		// _array[index] = val;
+
+		pointer ptr = _array + _size;
+		
+		while(&(*ptr) > &(*position)) {
+			*(_array + 1) = *_array;
+			ptr--;
+		}
+		return (position);
 	}
 	// void insert (iterator position, size_type n, const value_type& val) { /* fill */
 
