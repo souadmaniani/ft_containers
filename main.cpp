@@ -4,17 +4,17 @@
 #include <string>
 
 int main () {
-	std::vector<int> myvector(30, 9);
+	ft::vector<int> myvector(30, 9);
 	myvector[0] = 4;
 	myvector[1] = 5;
 	myvector[2] = 6;
-	std::cout << "before: "<< &myvector[0] << std::endl;
-	myvector.resize(3, 8);
-	std::cout << "after: "<< &myvector[0] << std::endl;
-	for (size_t i = 0; i < myvector.size(); i++)
+	myvector.resize(40, 8);
+	for (size_t i = 0; i < 10; i++)
 	{
 		std::cout << myvector[i] << std::endl;
 	}
+	std::cout << myvector.capacity() << "|" << myvector.size()  << std::endl;
+	std::cout << myvector << std::endl;
 	// No, resize ing to a smaller size will never reallocate.
 	// while(1) {
 	// 	/* code */

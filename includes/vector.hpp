@@ -7,6 +7,11 @@
 namespace ft
 {
 	template <class T, class Alloc = std::allocator<T> > 
+	class vector;
+	template <class T>
+	std::ostream & operator<< (std::ostream & o, const vector<T>& rhs);
+	template <class T, class Alloc> 
+
 	class vector
 	{
 	public:
@@ -27,15 +32,14 @@ namespace ft
 		size_type	_capacity;
 		pointer		_array;
 		allocator_type _allocator;
-		pointer array_copy(pointer arr, unsigned long size) {
-			pointer temp =  _allocator.allocate(size);
+		pointer array_copy(pointer dest, pointer src, unsigned long size) {
 			unsigned long i = 0;
 			while (i < size)
 			{
-				temp[i] = arr[i];
+				dest[i] = src[i];
 				i++;
 			}
-			return (temp);
+			return (dest);
 		}
 		void print_array(pointer arr, unsigned long n) {
 			for (size_t i = 0; i < n; i++)
@@ -145,30 +149,24 @@ namespace ft
 	}
 	void resize (size_type n, value_type val = value_type()) {
 		pointer temp;
-		if (n < _size) {
-			temp = array_copy(_array, n);
-			_allocator.deallocate(_array, _capacity);
-			_array = array_copy(temp, n);
-			_size = n;
-			_capacity = n;
-			_allocator.deallocate(temp, n);
-		}
-		else if (n > _size)
+		unsigned long i = 0;
+		if (n > _size)
 		{
 			if (n > _capacity) {
-				temp = array_copy(_array, n);
+				temp = _allocator.allocate(n);
+				temp = array_copy(temp, _array, n);
 				_allocator.deallocate(_array, _capacity);
-				_array = array_copy(temp, n);
+				_array = _allocator.allocate(_size * 2);
+				_array = array_copy(_array, temp, n);
 				_allocator.deallocate(temp, n);
 			}
-			unsigned long i = 0;
 			while(i < n - _size) {
 				_array[_size + i] = val;
 				i++;
 			}
-			_size = n;
-			_capacity = n;
+			_capacity = _size * 2;
 		}
+		_size = n;
 	}
 	size_type capacity() const {
 		return (_capacity);
@@ -217,7 +215,7 @@ namespace ft
 	// friend bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 	// friend bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 	// friend void swap (vector<T,Alloc>& x, vector<T,Alloc>& y);
-	// friend ostream & operator<<(ostream & o, vector const & rhs);
+	friend std::ostream & operator<< <>(std::ostream & o, const vector& rhs);
 	};
 	// template <class T, class Alloc>
 	// bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
@@ -233,21 +231,22 @@ namespace ft
 	// bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 	// template <class T, class Alloc>
 	// void swap (vector<T,Alloc>& x, vector<T,Alloc>& y);
-	// ostream & operator<<(ostream & o, vector<int> const & rhs) {
-	// unsigned long i = 0;
+	template <class T>
+	std::ostream & operator<<(std::ostream & o,const vector<T>& rhs) {
+		unsigned long i = 0;
 
-	// std::cout << "\e[1;35m/*******Vector Details: *******/\e[1;37m" << "\n";
-	// std::cout << "size: " << rhs._size << '\n';
-	// std::cout << "capacity: " << rhs._capacity << '\n';
-	// std::cout << "is_empty: " << boolalpha << rhs.empty() << '\n';
-	// while (i < rhs._size)
-	// {
-	// 	o << rhs._array[i] << " ";
-	// 	i++;
-	// }
-	// std::cout << '\n';
-	// std::cout << "\e[1;35m/******* End Details *******/\e[1;37m" << "\n";
-	// return o;
-	// }
+		std::cout << "\e[1;35m/*******Vector Details: *******/\e[1;37m" << "\n";
+		std::cout << "size: " << rhs._size << '\n';
+		std::cout << "capacity: " << rhs._capacity << '\n';
+		std::cout << "is_empty: " << std::boolalpha << rhs.empty() << '\n';
+		while (i < rhs._size)
+		{
+			o << rhs._array[i] << " ";
+			i++;
+		}
+		std::cout << '\n';
+		std::cout << "\e[1;35m/******* End Details *******/\e[1;37m" << "\n";
+		return o;
+	}
 }
 #endif

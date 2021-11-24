@@ -82,7 +82,7 @@ namespace ft
         /*******************************************************************************************************************************/
         template <class It>
         friend reverse_iterator<It> operator+(typename reverse_iterator<It>::difference_type n, const reverse_iterator<It>& rev_it) {
-            reverse_iterator temp = *rev_it;
+            reverse_iterator temp = rev_it;
             temp.current +=n;
             return (temp);
         }

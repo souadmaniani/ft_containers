@@ -90,7 +90,6 @@ namespace ft
         }
         template<typename U, typename V>
 		friend bool operator== (const VectorIterator<U>& lhs, const VectorIterator<V>& rhs) {
-           
             	return (lhs.ptr == rhs.ptr);
         }
         template<typename U, typename V>
