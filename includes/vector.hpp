@@ -174,15 +174,26 @@ namespace ft
 	bool empty() const {
 		return (_size == 0);
 	}
-	// void reserve (size_type n) {
-		
-	// }
+	void reserve (size_type n) {
+		pointer temp;
+		if (n > _capacity) {
+			temp = _allocator.allocate(_size);
+			temp = array_copy(temp, _array, _size);
+			_allocator.deallocate(_array, _capacity);
+			_array = _allocator.allocate(n);
+			_array = array_copy(_array, temp, _size);
+			_allocator.deallocate(temp, _size);
+			_capacity = n;
+		}
+	}
 	
 	/******************** Element access *********************/	
 	reference operator[] (size_type n) {
 		return (_array[n]);
 	}
-	// const_reference operator[] (size_type n) const;
+	const_reference operator[] (size_type n) const {
+		
+	}
 	// reference at (size_type n);
 	// const_reference at (size_type n) const;
 	// reference front();
