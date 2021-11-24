@@ -156,7 +156,8 @@ namespace ft
 				temp = _allocator.allocate(n);
 				temp = array_copy(temp, _array, n);
 				_allocator.deallocate(_array, _capacity);
-				_array = _allocator.allocate(_size * 2);
+				_capacity = _size * 2;
+				_array = _allocator.allocate(_capacity);
 				_array = array_copy(_array, temp, n);
 				_allocator.deallocate(temp, n);
 			}
@@ -164,7 +165,6 @@ namespace ft
 				_array[_size + i] = val;
 				i++;
 			}
-			_capacity = _size * 2;
 		}
 		_size = n;
 	}
@@ -177,12 +177,10 @@ namespace ft
 	void reserve (size_type n) {
 		pointer temp;
 		if (n > _capacity) {
-			temp = _allocator.allocate(_size);
+			temp = _allocator.allocate(n);
 			temp = array_copy(temp, _array, _size);
 			_allocator.deallocate(_array, _capacity);
-			_array = _allocator.allocate(n);
-			_array = array_copy(_array, temp, _size);
-			_allocator.deallocate(temp, _size);
+			_array = temp;
 			_capacity = n;
 		}
 	}
@@ -192,25 +190,107 @@ namespace ft
 		return (_array[n]);
 	}
 	const_reference operator[] (size_type n) const {
-		
+		return (_array[n]);
 	}
-	// reference at (size_type n);
-	// const_reference at (size_type n) const;
-	// reference front();
-	// const_reference front() const;
-	// reference back();
-	// const_reference back() const;
+	reference at (size_type n) {
+		if (!(n < _size))
+			throw std::out_of_range("vector");
+		return (_array[n]);
+	}
+	const_reference at (size_type n) const {
+		if (!(n < _size))
+			throw std::out_of_range("vector");
+		return (_array[n]);
+	}
+	reference front() {
+		return (*begin());
+	}
+	const_reference front() const {
+		return (*begin());
+	}
+	reference back() {
+		return (_array[_size - 1]);
+	}
+	const_reference back() const {
+		return (_array[_size - 1]);
+	}
 
 	/******************** Modifiers *********************/	
+	void assign (size_type n, const value_type& val) {
+		unsigned long i = 0;
+
+		if (n > _capacity) {
+			_allocator.deallocate(_array, _capacity);
+			_capacity = n;
+			_array = _allocator.allocate(_capacity);
+		}
+		while(i < n) {
+			_array[i] = val;
+			i++;
+		}
+		_size = n;
+	}
+	template <class InputIterator>
+	void assign (InputIterator first, InputIterator last,
+					typename enable_if<!is_integral<InputIterator>::value>::type* = 0) {
+		unsigned long i = 0;
+
+		if (last - first > _capacity) {
+			_allocator.deallocate(_array, _capacity);
+			_capacity = last - first;
+			_array = _allocator.allocate(_capacity);
+		}
+		_size = last - first;
+		while (first != last)
+		{
+			_array[i++] = *first;
+			first++;
+		}
+	}
+	void push_back (const value_type& val) {
+		pointer temp;
+
+		if (_size == _capacity) {
+			temp = _allocator.allocate(_size * 2);
+			temp = array_copy(temp, _array, _size);
+			_allocator.deallocate(_array, _capacity);
+			_capacity = _size * 2;
+			_array = temp;
+		}
+		_array[_size] = val;
+		_size++;
+	}
+	void pop_back() {
+		_size--;
+	}
+	iterator insert (iterator position, const value_type& val) { /* single element */
+		pointer temp;
+		unsigned long i = 0;
+		if (position == end() - 1)
+			push_back(val);
+		else {
+			temp = _allocator.allocate(_size);
+			temp = array_copy(temp, _array, _size);
+			if (_size == _capacity) {
+				_allocator.deallocate(_array, _capacity);
+				_capacity = _size * 2;
+				_array = _allocator.allocate(_capacity);
+				_size++;
+
+				// while(i < _size) {
+				// 	if ()
+				// }
+				
+			}
+		}
+	}
+	// void insert (iterator position, size_type n, const value_type& val) { /* fill */
+
+	// }
 	// template <class InputIterator>
-	// void assign (InputIterator first, InputIterator last);
-	// void assign (size_type n, const value_type& val);
-	// void push_back (const value_type& val);
-	// void pop_back();
-	// iterator insert (iterator position, const value_type& val);
-	// void insert (iterator position, size_type n, const value_type& val);
-	// template <class InputIterator>
-	// void insert (iterator position, InputIterator first, InputIterator last);
+	// void insert (iterator position, InputIterator first, InputIterator last) { /* range */
+
+	// }
 	// iterator erase (iterator position);
 	// iterator erase (iterator first, iterator last);
 	// void swap (vector& x);
