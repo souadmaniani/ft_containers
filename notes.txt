@@ -1,3 +1,26 @@
 // std::vector<int> myvector;
 // for (int i=1;i<10;i++) myvector.push_back(i);
 // capacity: 16
+
+BST(binary search tree)
+1- Insert
+2- Delete
+3- Search
+4- Traversals
+
+Insert(data)
+Begin
+    if (node == null)
+        return createNode(data)
+    if (data < node->data)
+        node->left = createNode(data)
+    else if (data > node->data)
+        node->right  = createNode(data)
+    return node
+End
+
+Delete
+- the node is a leaf node (delete it directly)
+- the node has only one child (copy the child into the node && delete the node)
+- the node has two children (find the inordre successor for the node && copy it
+    in the node then delete the inorder successor)
