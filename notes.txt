@@ -3,10 +3,10 @@
 // capacity: 16
 
 BST(binary search tree)
+4- Traversals
 1- Insert
 2- Delete
 3- Search
-4- Traversals
 
 Insert(data)
 Begin
@@ -24,3 +24,25 @@ Delete
 - the node has only one child (copy the child into the node && delete the node)
 - the node has two children (find the inordre successor for the node && copy it
     in the node then delete the inorder successor)
+
+Inorder Successor
+1- Right child of node is not NULL. If the right child of the node is not NULL
+    then the inorder successor of this node will be the leftmost node in it’s right subtree.
+2- Right Child of the node is NULL. If the right child of node is NULL. Then we keep finding
+    the parent of the given node
+
+The minimum height is h=ceiling( log(n+1)/log(2) -1) for any binary tree == floor(log2(n))
+
+AVl tree
+4 CASES for balance based on 3 nodes
+- Left Left Case
+- Left Right Case
+- Right Right Case
+- Right Left Case
+balance factor (left subtree height – right subtree height)
++ balance factor > 1 ==> Left Left Case || Left Right Case
++ balance factor < -1 ==> Right Right case || Right Left Case
+
+* if multiple nodes are becoming imbalance, you go from the
+inserted node to the first incestor which became imbalance perform rotation over that
+RLL ==> RL 
